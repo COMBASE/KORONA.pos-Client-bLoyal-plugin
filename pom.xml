@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.combase</groupId>
 	<artifactId>korona-bloyal-plugin</artifactId>
-	<version>1.3-SNAPSHOT</version>
+	<version>1.3</version>
 
 	<dependencies>
 		<dependency>
@@ -154,6 +154,6 @@
 		<connection>scm:git:git@github.com:COMBASE/KORONA.pos-Client-bLoyal-plugin.git</connection>
 		<developerConnection>scm:git:git@github.com:COMBASE/KORONA.pos-Client-bLoyal-plugin.git</developerConnection>
 		<url>scm:git:git@github.com:COMBASE/KORONA.pos-Client-bLoyal-plugin.git</url>
-		<tag>HEAD</tag>
+		<tag>korona-bloyal-plugin-1.3</tag>
 	</scm>
 </project>
