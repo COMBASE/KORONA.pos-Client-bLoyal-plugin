@@ -112,7 +112,7 @@
 						<configuration>
 							<wsdlOptions>
 								<wsdlOption>
-									<wsdl>${basedir}/src/main/wsdl/LoyaltyEngine.wsdl</wsdl>
+									<wsdl>${basedir}/src/main/wsdl/PaymentEngine.wsdl</wsdl>
 								</wsdlOption>
 							</wsdlOptions>
 						</configuration>
