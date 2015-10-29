@@ -1,0 +1,1084 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="PaymentEngineService"
+	targetNamespace="http://service.bloyal.com/3.5" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex"
+	xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy"
+	xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract"
+	xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:tns="http://service.bloyal.com/3.5" xmlns:wsa10="http://www.w3.org/2005/08/addressing"
+	xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing">
+	<wsp:Policy wsu:Id="BasicHttpBinding_PaymentEngine_policy">
+		<wsp:ExactlyOne>
+			<wsp:All>
+				<sp:TransportBinding
+					xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+					<wsp:Policy>
+						<sp:TransportToken>
+							<wsp:Policy>
+								<sp:HttpsToken RequireClientCertificate="false" />
+							</wsp:Policy>
+						</sp:TransportToken>
+						<sp:AlgorithmSuite>
+							<wsp:Policy>
+								<sp:Basic256 />
+							</wsp:Policy>
+						</sp:AlgorithmSuite>
+						<sp:Layout>
+							<wsp:Policy>
+								<sp:Strict />
+							</wsp:Policy>
+						</sp:Layout>
+					</wsp:Policy>
+				</sp:TransportBinding>
+			</wsp:All>
+		</wsp:ExactlyOne>
+	</wsp:Policy>
+	<wsdl:types>
+		<xs:schema elementFormDefault="qualified"
+			targetNamespace="http://service.bloyal.com/3.5" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+			<xs:import namespace="http://schema.bloyal.com/3.5" />
+			<xs:element name="GetCardBalance">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="deviceAccessKey"
+							nillable="true" type="xs:string" />
+						<xs:element minOccurs="0" name="storeCode" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="deviceCode" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="request" nillable="true"
+							type="q1:CardBalanceRequest" xmlns:q1="http://schema.bloyal.com/3.5" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetCardBalanceResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetCardBalanceResult"
+							nillable="true" type="q2:CardResponse" xmlns:q2="http://schema.bloyal.com/3.5" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CardCredit">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="deviceAccessKey"
+							nillable="true" type="xs:string" />
+						<xs:element minOccurs="0" name="storeCode" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="deviceCode" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="request" nillable="true"
+							type="q3:CardCreditRequest" xmlns:q3="http://schema.bloyal.com/3.5" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CardCreditResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="CardCreditResult"
+							nillable="true" type="q4:CardResponse" xmlns:q4="http://schema.bloyal.com/3.5" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CardRedeem">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="deviceAccessKey"
+							nillable="true" type="xs:string" />
+						<xs:element minOccurs="0" name="storeCode" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="deviceCode" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="request" nillable="true"
+							type="q5:CardRedeemRequest" xmlns:q5="http://schema.bloyal.com/3.5" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CardRedeemResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="CardRedeemResult"
+							nillable="true" type="q6:CardResponse" xmlns:q6="http://schema.bloyal.com/3.5" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CardDebit">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="deviceAccessKey"
+							nillable="true" type="xs:string" />
+						<xs:element minOccurs="0" name="storeCode" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="deviceCode" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="request" nillable="true"
+							type="q7:CardDebitRequest" xmlns:q7="http://schema.bloyal.com/3.5" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CardDebitResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="CardDebitResult"
+							nillable="true" type="q8:CardResponse" xmlns:q8="http://schema.bloyal.com/3.5" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CardRefund">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="deviceAccessKey"
+							nillable="true" type="xs:string" />
+						<xs:element minOccurs="0" name="storeCode" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="deviceCode" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="request" nillable="true"
+							type="q9:CardRefundRequest" xmlns:q9="http://schema.bloyal.com/3.5" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CardRefundResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="CardRefundResult"
+							nillable="true" type="q10:CardResponse" xmlns:q10="http://schema.bloyal.com/3.5" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CardAuthorize">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="deviceAccessKey"
+							nillable="true" type="xs:string" />
+						<xs:element minOccurs="0" name="storeCode" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="deviceCode" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="request" nillable="true"
+							type="q11:CardAuthorizeRequest" xmlns:q11="http://schema.bloyal.com/3.5" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CardAuthorizeResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="CardAuthorizeResult"
+							nillable="true" type="q12:CardResponse" xmlns:q12="http://schema.bloyal.com/3.5" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CardRelease">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="deviceAccessKey"
+							nillable="true" type="xs:string" />
+						<xs:element minOccurs="0" name="storeCode" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="deviceCode" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="request" nillable="true"
+							type="q13:CardReleaseRequest" xmlns:q13="http://schema.bloyal.com/3.5" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CardReleaseResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="CardReleaseResult"
+							nillable="true" type="q14:CardResponse" xmlns:q14="http://schema.bloyal.com/3.5" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CardCapture">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="deviceAccessKey"
+							nillable="true" type="xs:string" />
+						<xs:element minOccurs="0" name="storeCode" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="deviceCode" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="request" nillable="true"
+							type="q15:CardCaptureRequest" xmlns:q15="http://schema.bloyal.com/3.5" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CardCaptureResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="CardCaptureResult"
+							nillable="true" type="q16:CardResponse" xmlns:q16="http://schema.bloyal.com/3.5" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+		<xs:schema attributeFormDefault="qualified"
+			elementFormDefault="qualified"
+			targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/">
+			<xs:element name="anyType" nillable="true" type="xs:anyType" />
+			<xs:element name="anyURI" nillable="true" type="xs:anyURI" />
+			<xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
+			<xs:element name="boolean" nillable="true" type="xs:boolean" />
+			<xs:element name="byte" nillable="true" type="xs:byte" />
+			<xs:element name="dateTime" nillable="true" type="xs:dateTime" />
+			<xs:element name="decimal" nillable="true" type="xs:decimal" />
+			<xs:element name="double" nillable="true" type="xs:double" />
+			<xs:element name="float" nillable="true" type="xs:float" />
+			<xs:element name="int" nillable="true" type="xs:int" />
+			<xs:element name="long" nillable="true" type="xs:long" />
+			<xs:element name="QName" nillable="true" type="xs:QName" />
+			<xs:element name="short" nillable="true" type="xs:short" />
+			<xs:element name="string" nillable="true" type="xs:string" />
+			<xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
+			<xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
+			<xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
+			<xs:element name="unsignedShort" nillable="true"
+				type="xs:unsignedShort" />
+			<xs:element name="char" nillable="true" type="tns:char" />
+			<xs:simpleType name="char">
+				<xs:restriction base="xs:int" />
+			</xs:simpleType>
+			<xs:element name="duration" nillable="true" type="tns:duration" />
+			<xs:simpleType name="duration">
+				<xs:restriction base="xs:duration">
+					<xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
+					<xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
+					<xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:element name="guid" nillable="true" type="tns:guid" />
+			<xs:simpleType name="guid">
+				<xs:restriction base="xs:string">
+					<xs:pattern
+						value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:attribute name="FactoryType" type="xs:QName" />
+			<xs:attribute name="Id" type="xs:ID" />
+			<xs:attribute name="Ref" type="xs:IDREF" />
+		</xs:schema>
+		<xs:schema elementFormDefault="qualified" targetNamespace="http://schema.bloyal.com/3.5"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schema.bloyal.com/3.5"
+			xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/">
+			<xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+			<xs:import
+				namespace="http://schemas.datacontract.org/2004/07/System.ServiceModel" />
+			<xs:complexType name="CardBalanceRequest">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="CardNumber" nillable="true"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="CardPin" nillable="true"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="CustomerUid" type="ser:guid" />
+					<xs:element minOccurs="0" name="Swiped" type="xs:boolean" />
+					<xs:element minOccurs="0" name="TenderCode" nillable="true"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="TransactionExternalId"
+						nillable="true" type="xs:string" />
+					<xs:element minOccurs="0" name="TransactionToken"
+						nillable="true" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="CardBalanceRequest" nillable="true"
+				type="tns:CardBalanceRequest" />
+			<xs:complexType name="CardResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="AuthorizationCode"
+						nillable="true" type="xs:string" />
+					<xs:element minOccurs="0" name="AvailableBalance" type="xs:decimal" />
+					<xs:element minOccurs="0" name="CurrentBalance" type="xs:decimal" />
+					<xs:element minOccurs="0" name="Message" nillable="true"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="Status" type="tns:CardRequestStatus" />
+					<xs:element minOccurs="0" name="Success" type="xs:boolean" />
+					<xs:element minOccurs="0" name="TransactionCode"
+						nillable="true" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="CardResponse" nillable="true"
+				type="tns:CardResponse" />
+			<xs:simpleType name="CardRequestStatus">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Approved" />
+					<xs:enumeration value="Declined" />
+					<xs:enumeration value="Invalid" />
+					<xs:enumeration value="Bypass" />
+					<xs:enumeration value="Error" />
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:element name="CardRequestStatus" nillable="true"
+				type="tns:CardRequestStatus" />
+			<xs:complexType name="SecurityFault">
+				<xs:complexContent mixed="false">
+					<xs:extension base="tns:BaseFault">
+						<xs:sequence />
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:element name="SecurityFault" nillable="true"
+				type="tns:SecurityFault" />
+			<xs:complexType name="BaseFault">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="Exception" nillable="true"
+						type="q1:ExceptionDetail" xmlns:q1="http://schemas.datacontract.org/2004/07/System.ServiceModel" />
+					<xs:element minOccurs="0" name="Message" nillable="true"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="BaseFault" nillable="true" type="tns:BaseFault" />
+			<xs:complexType name="RedirectFault">
+				<xs:complexContent mixed="false">
+					<xs:extension base="tns:BaseFault">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="RedirectBaseUri"
+								nillable="true" type="xs:string" />
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:element name="RedirectFault" nillable="true"
+				type="tns:RedirectFault" />
+			<xs:complexType name="SystemFault">
+				<xs:complexContent mixed="false">
+					<xs:extension base="tns:BaseFault">
+						<xs:sequence />
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:element name="SystemFault" nillable="true" type="tns:SystemFault" />
+			<xs:complexType name="BusinessFault">
+				<xs:complexContent mixed="false">
+					<xs:extension base="tns:BaseFault">
+						<xs:sequence />
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:element name="BusinessFault" nillable="true"
+				type="tns:BusinessFault" />
+			<xs:complexType name="CardCreditRequest">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="AllowDuplicate" type="xs:boolean" />
+					<xs:element minOccurs="0" name="Amount" type="xs:decimal" />
+					<xs:element minOccurs="0" name="CardNumber" nillable="true"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="CustomerUid" type="ser:guid" />
+					<xs:element minOccurs="0" name="Swiped" type="xs:boolean" />
+					<xs:element minOccurs="0" name="TenderCode" nillable="true"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="TransactionExternalId"
+						nillable="true" type="xs:string" />
+					<xs:element minOccurs="0" name="TransactionToken"
+						nillable="true" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="CardCreditRequest" nillable="true"
+				type="tns:CardCreditRequest" />
+			<xs:complexType name="CardRedeemRequest">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="AllowDuplicate" type="xs:boolean" />
+					<xs:element minOccurs="0" name="Amount" type="xs:decimal" />
+					<xs:element minOccurs="0" name="CardNumber" nillable="true"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="CardPin" nillable="true"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="CustomerUid" type="ser:guid" />
+					<xs:element minOccurs="0" name="Swiped" type="xs:boolean" />
+					<xs:element minOccurs="0" name="TenderCode" nillable="true"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="TransactionExternalId"
+						nillable="true" type="xs:string" />
+					<xs:element minOccurs="0" name="TransactionToken"
+						nillable="true" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="CardRedeemRequest" nillable="true"
+				type="tns:CardRedeemRequest" />
+			<xs:complexType name="CardDebitRequest">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="AllowDuplicate" type="xs:boolean" />
+					<xs:element minOccurs="0" name="Amount" type="xs:decimal" />
+					<xs:element minOccurs="0" name="TransactionCode"
+						nillable="true" type="xs:string" />
+					<xs:element minOccurs="0" name="TransactionExternalId"
+						nillable="true" type="xs:string" />
+					<xs:element minOccurs="0" name="TransactionToken"
+						nillable="true" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="CardDebitRequest" nillable="true"
+				type="tns:CardDebitRequest" />
+			<xs:complexType name="CardRefundRequest">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="AllowDuplicate" type="xs:boolean" />
+					<xs:element minOccurs="0" name="Amount" type="xs:decimal" />
+					<xs:element minOccurs="0" name="TransactionCode"
+						nillable="true" type="xs:string" />
+					<xs:element minOccurs="0" name="TransactionExternalId"
+						nillable="true" type="xs:string" />
+					<xs:element minOccurs="0" name="TransactionToken"
+						nillable="true" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="CardRefundRequest" nillable="true"
+				type="tns:CardRefundRequest" />
+			<xs:complexType name="CardAuthorizeRequest">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="AllowDuplicate" type="xs:boolean" />
+					<xs:element minOccurs="0" name="Amount" type="xs:decimal" />
+					<xs:element minOccurs="0" name="CardNumber" nillable="true"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="CardPin" nillable="true"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="CustomerUid" type="ser:guid" />
+					<xs:element minOccurs="0" name="Swiped" type="xs:boolean" />
+					<xs:element minOccurs="0" name="TenderCode" nillable="true"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="TransactionExternalId"
+						nillable="true" type="xs:string" />
+					<xs:element minOccurs="0" name="TransactionToken"
+						nillable="true" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="CardAuthorizeRequest" nillable="true"
+				type="tns:CardAuthorizeRequest" />
+			<xs:complexType name="CardReleaseRequest">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="Reference" nillable="true"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="TransactionCode"
+						nillable="true" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="CardReleaseRequest" nillable="true"
+				type="tns:CardReleaseRequest" />
+			<xs:complexType name="CardCaptureRequest">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="AllowDuplicate" type="xs:boolean" />
+					<xs:element minOccurs="0" name="Amount" type="xs:decimal" />
+					<xs:element minOccurs="0" name="TransactionCode"
+						nillable="true" type="xs:string" />
+					<xs:element minOccurs="0" name="TransactionExternalId"
+						nillable="true" type="xs:string" />
+					<xs:element minOccurs="0" name="TransactionToken"
+						nillable="true" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="CardCaptureRequest" nillable="true"
+				type="tns:CardCaptureRequest" />
+		</xs:schema>
+		<xs:schema elementFormDefault="qualified"
+			targetNamespace="http://schemas.datacontract.org/2004/07/System.ServiceModel"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="http://schemas.datacontract.org/2004/07/System.ServiceModel">
+			<xs:complexType name="ExceptionDetail">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="HelpLink" nillable="true"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="InnerException"
+						nillable="true" type="tns:ExceptionDetail" />
+					<xs:element minOccurs="0" name="Message" nillable="true"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="StackTrace" nillable="true"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="Type" nillable="true"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ExceptionDetail" nillable="true"
+				type="tns:ExceptionDetail" />
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="PaymentEngine_GetCardBalance_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetCardBalance" />
+	</wsdl:message>
+	<wsdl:message name="PaymentEngine_GetCardBalance_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetCardBalanceResponse" />
+	</wsdl:message>
+	<wsdl:message
+		name="PaymentEngine_GetCardBalance_SecurityFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q1:SecurityFault"
+			xmlns:q1="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message
+		name="PaymentEngine_GetCardBalance_RedirectFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q2:RedirectFault"
+			xmlns:q2="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message
+		name="PaymentEngine_GetCardBalance_SystemFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q3:SystemFault"
+			xmlns:q3="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message
+		name="PaymentEngine_GetCardBalance_BusinessFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q4:BusinessFault"
+			xmlns:q4="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message name="PaymentEngine_CardCredit_InputMessage">
+		<wsdl:part name="parameters" element="tns:CardCredit" />
+	</wsdl:message>
+	<wsdl:message name="PaymentEngine_CardCredit_OutputMessage">
+		<wsdl:part name="parameters" element="tns:CardCreditResponse" />
+	</wsdl:message>
+	<wsdl:message
+		name="PaymentEngine_CardCredit_SecurityFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q5:SecurityFault"
+			xmlns:q5="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message
+		name="PaymentEngine_CardCredit_RedirectFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q6:RedirectFault"
+			xmlns:q6="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message name="PaymentEngine_CardCredit_SystemFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q7:SystemFault"
+			xmlns:q7="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message
+		name="PaymentEngine_CardCredit_BusinessFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q8:BusinessFault"
+			xmlns:q8="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message name="PaymentEngine_CardRedeem_InputMessage">
+		<wsdl:part name="parameters" element="tns:CardRedeem" />
+	</wsdl:message>
+	<wsdl:message name="PaymentEngine_CardRedeem_OutputMessage">
+		<wsdl:part name="parameters" element="tns:CardRedeemResponse" />
+	</wsdl:message>
+	<wsdl:message
+		name="PaymentEngine_CardRedeem_SecurityFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q9:SecurityFault"
+			xmlns:q9="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message
+		name="PaymentEngine_CardRedeem_RedirectFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q10:RedirectFault"
+			xmlns:q10="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message name="PaymentEngine_CardRedeem_SystemFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q11:SystemFault"
+			xmlns:q11="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message
+		name="PaymentEngine_CardRedeem_BusinessFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q12:BusinessFault"
+			xmlns:q12="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message name="PaymentEngine_CardDebit_InputMessage">
+		<wsdl:part name="parameters" element="tns:CardDebit" />
+	</wsdl:message>
+	<wsdl:message name="PaymentEngine_CardDebit_OutputMessage">
+		<wsdl:part name="parameters" element="tns:CardDebitResponse" />
+	</wsdl:message>
+	<wsdl:message name="PaymentEngine_CardDebit_SecurityFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q13:SecurityFault"
+			xmlns:q13="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message name="PaymentEngine_CardDebit_RedirectFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q14:RedirectFault"
+			xmlns:q14="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message name="PaymentEngine_CardDebit_SystemFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q15:SystemFault"
+			xmlns:q15="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message name="PaymentEngine_CardDebit_BusinessFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q16:BusinessFault"
+			xmlns:q16="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message name="PaymentEngine_CardRefund_InputMessage">
+		<wsdl:part name="parameters" element="tns:CardRefund" />
+	</wsdl:message>
+	<wsdl:message name="PaymentEngine_CardRefund_OutputMessage">
+		<wsdl:part name="parameters" element="tns:CardRefundResponse" />
+	</wsdl:message>
+	<wsdl:message
+		name="PaymentEngine_CardRefund_SecurityFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q17:SecurityFault"
+			xmlns:q17="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message
+		name="PaymentEngine_CardRefund_RedirectFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q18:RedirectFault"
+			xmlns:q18="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message name="PaymentEngine_CardRefund_SystemFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q19:SystemFault"
+			xmlns:q19="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message
+		name="PaymentEngine_CardRefund_BusinessFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q20:BusinessFault"
+			xmlns:q20="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message name="PaymentEngine_CardAuthorize_InputMessage">
+		<wsdl:part name="parameters" element="tns:CardAuthorize" />
+	</wsdl:message>
+	<wsdl:message name="PaymentEngine_CardAuthorize_OutputMessage">
+		<wsdl:part name="parameters" element="tns:CardAuthorizeResponse" />
+	</wsdl:message>
+	<wsdl:message
+		name="PaymentEngine_CardAuthorize_SecurityFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q21:SecurityFault"
+			xmlns:q21="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message
+		name="PaymentEngine_CardAuthorize_RedirectFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q22:RedirectFault"
+			xmlns:q22="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message
+		name="PaymentEngine_CardAuthorize_SystemFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q23:SystemFault"
+			xmlns:q23="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message
+		name="PaymentEngine_CardAuthorize_BusinessFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q24:BusinessFault"
+			xmlns:q24="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message name="PaymentEngine_CardRelease_InputMessage">
+		<wsdl:part name="parameters" element="tns:CardRelease" />
+	</wsdl:message>
+	<wsdl:message name="PaymentEngine_CardRelease_OutputMessage">
+		<wsdl:part name="parameters" element="tns:CardReleaseResponse" />
+	</wsdl:message>
+	<wsdl:message
+		name="PaymentEngine_CardRelease_SecurityFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q25:SecurityFault"
+			xmlns:q25="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message
+		name="PaymentEngine_CardRelease_RedirectFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q26:RedirectFault"
+			xmlns:q26="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message name="PaymentEngine_CardRelease_SystemFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q27:SystemFault"
+			xmlns:q27="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message
+		name="PaymentEngine_CardRelease_BusinessFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q28:BusinessFault"
+			xmlns:q28="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message name="PaymentEngine_CardCapture_InputMessage">
+		<wsdl:part name="parameters" element="tns:CardCapture" />
+	</wsdl:message>
+	<wsdl:message name="PaymentEngine_CardCapture_OutputMessage">
+		<wsdl:part name="parameters" element="tns:CardCaptureResponse" />
+	</wsdl:message>
+	<wsdl:message
+		name="PaymentEngine_CardCapture_SecurityFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q29:SecurityFault"
+			xmlns:q29="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message
+		name="PaymentEngine_CardCapture_RedirectFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q30:RedirectFault"
+			xmlns:q30="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message name="PaymentEngine_CardCapture_SystemFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q31:SystemFault"
+			xmlns:q31="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:message
+		name="PaymentEngine_CardCapture_BusinessFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="q32:BusinessFault"
+			xmlns:q32="http://schema.bloyal.com/3.5" />
+	</wsdl:message>
+	<wsdl:portType name="PaymentEngine">
+		<wsdl:operation name="GetCardBalance">
+			<wsdl:input
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/GetCardBalance"
+				message="tns:PaymentEngine_GetCardBalance_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/GetCardBalanceResponse"
+				message="tns:PaymentEngine_GetCardBalance_OutputMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/GetCardBalanceSecurityFaultFault"
+				name="SecurityFaultFault"
+				message="tns:PaymentEngine_GetCardBalance_SecurityFaultFault_FaultMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/GetCardBalanceRedirectFaultFault"
+				name="RedirectFaultFault"
+				message="tns:PaymentEngine_GetCardBalance_RedirectFaultFault_FaultMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/GetCardBalanceSystemFaultFault"
+				name="SystemFaultFault"
+				message="tns:PaymentEngine_GetCardBalance_SystemFaultFault_FaultMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/GetCardBalanceBusinessFaultFault"
+				name="BusinessFaultFault"
+				message="tns:PaymentEngine_GetCardBalance_BusinessFaultFault_FaultMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="CardCredit">
+			<wsdl:input wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardCredit"
+				message="tns:PaymentEngine_CardCredit_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardCreditResponse"
+				message="tns:PaymentEngine_CardCredit_OutputMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardCreditSecurityFaultFault"
+				name="SecurityFaultFault" message="tns:PaymentEngine_CardCredit_SecurityFaultFault_FaultMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardCreditRedirectFaultFault"
+				name="RedirectFaultFault" message="tns:PaymentEngine_CardCredit_RedirectFaultFault_FaultMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardCreditSystemFaultFault"
+				name="SystemFaultFault" message="tns:PaymentEngine_CardCredit_SystemFaultFault_FaultMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardCreditBusinessFaultFault"
+				name="BusinessFaultFault" message="tns:PaymentEngine_CardCredit_BusinessFaultFault_FaultMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="CardRedeem">
+			<wsdl:input wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardRedeem"
+				message="tns:PaymentEngine_CardRedeem_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardRedeemResponse"
+				message="tns:PaymentEngine_CardRedeem_OutputMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardRedeemSecurityFaultFault"
+				name="SecurityFaultFault" message="tns:PaymentEngine_CardRedeem_SecurityFaultFault_FaultMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardRedeemRedirectFaultFault"
+				name="RedirectFaultFault" message="tns:PaymentEngine_CardRedeem_RedirectFaultFault_FaultMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardRedeemSystemFaultFault"
+				name="SystemFaultFault" message="tns:PaymentEngine_CardRedeem_SystemFaultFault_FaultMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardRedeemBusinessFaultFault"
+				name="BusinessFaultFault" message="tns:PaymentEngine_CardRedeem_BusinessFaultFault_FaultMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="CardDebit">
+			<wsdl:input wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardDebit"
+				message="tns:PaymentEngine_CardDebit_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardDebitResponse"
+				message="tns:PaymentEngine_CardDebit_OutputMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardDebitSecurityFaultFault"
+				name="SecurityFaultFault" message="tns:PaymentEngine_CardDebit_SecurityFaultFault_FaultMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardDebitRedirectFaultFault"
+				name="RedirectFaultFault" message="tns:PaymentEngine_CardDebit_RedirectFaultFault_FaultMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardDebitSystemFaultFault"
+				name="SystemFaultFault" message="tns:PaymentEngine_CardDebit_SystemFaultFault_FaultMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardDebitBusinessFaultFault"
+				name="BusinessFaultFault" message="tns:PaymentEngine_CardDebit_BusinessFaultFault_FaultMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="CardRefund">
+			<wsdl:input wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardRefund"
+				message="tns:PaymentEngine_CardRefund_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardRefundResponse"
+				message="tns:PaymentEngine_CardRefund_OutputMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardRefundSecurityFaultFault"
+				name="SecurityFaultFault" message="tns:PaymentEngine_CardRefund_SecurityFaultFault_FaultMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardRefundRedirectFaultFault"
+				name="RedirectFaultFault" message="tns:PaymentEngine_CardRefund_RedirectFaultFault_FaultMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardRefundSystemFaultFault"
+				name="SystemFaultFault" message="tns:PaymentEngine_CardRefund_SystemFaultFault_FaultMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardRefundBusinessFaultFault"
+				name="BusinessFaultFault" message="tns:PaymentEngine_CardRefund_BusinessFaultFault_FaultMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="CardAuthorize">
+			<wsdl:input
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardAuthorize"
+				message="tns:PaymentEngine_CardAuthorize_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardAuthorizeResponse"
+				message="tns:PaymentEngine_CardAuthorize_OutputMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardAuthorizeSecurityFaultFault"
+				name="SecurityFaultFault"
+				message="tns:PaymentEngine_CardAuthorize_SecurityFaultFault_FaultMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardAuthorizeRedirectFaultFault"
+				name="RedirectFaultFault"
+				message="tns:PaymentEngine_CardAuthorize_RedirectFaultFault_FaultMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardAuthorizeSystemFaultFault"
+				name="SystemFaultFault" message="tns:PaymentEngine_CardAuthorize_SystemFaultFault_FaultMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardAuthorizeBusinessFaultFault"
+				name="BusinessFaultFault"
+				message="tns:PaymentEngine_CardAuthorize_BusinessFaultFault_FaultMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="CardRelease">
+			<wsdl:input wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardRelease"
+				message="tns:PaymentEngine_CardRelease_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardReleaseResponse"
+				message="tns:PaymentEngine_CardRelease_OutputMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardReleaseSecurityFaultFault"
+				name="SecurityFaultFault" message="tns:PaymentEngine_CardRelease_SecurityFaultFault_FaultMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardReleaseRedirectFaultFault"
+				name="RedirectFaultFault" message="tns:PaymentEngine_CardRelease_RedirectFaultFault_FaultMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardReleaseSystemFaultFault"
+				name="SystemFaultFault" message="tns:PaymentEngine_CardRelease_SystemFaultFault_FaultMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardReleaseBusinessFaultFault"
+				name="BusinessFaultFault" message="tns:PaymentEngine_CardRelease_BusinessFaultFault_FaultMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="CardCapture">
+			<wsdl:input wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardCapture"
+				message="tns:PaymentEngine_CardCapture_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardCaptureResponse"
+				message="tns:PaymentEngine_CardCapture_OutputMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardCaptureSecurityFaultFault"
+				name="SecurityFaultFault" message="tns:PaymentEngine_CardCapture_SecurityFaultFault_FaultMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardCaptureRedirectFaultFault"
+				name="RedirectFaultFault" message="tns:PaymentEngine_CardCapture_RedirectFaultFault_FaultMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardCaptureSystemFaultFault"
+				name="SystemFaultFault" message="tns:PaymentEngine_CardCapture_SystemFaultFault_FaultMessage" />
+			<wsdl:fault
+				wsaw:Action="http://service.bloyal.com/3.5/PaymentEngine/CardCaptureBusinessFaultFault"
+				name="BusinessFaultFault" message="tns:PaymentEngine_CardCapture_BusinessFaultFault_FaultMessage" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="BasicHttpBinding_PaymentEngine" type="tns:PaymentEngine">
+		<wsp:PolicyReference URI="#BasicHttpBinding_PaymentEngine_policy" />
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetCardBalance">
+			<soap:operation
+				soapAction="http://service.bloyal.com/3.5/PaymentEngine/GetCardBalance"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="SecurityFaultFault">
+				<soap:fault use="literal" name="SecurityFaultFault"
+					namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="RedirectFaultFault">
+				<soap:fault use="literal" name="RedirectFaultFault"
+					namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="SystemFaultFault">
+				<soap:fault use="literal" name="SystemFaultFault"
+					namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="BusinessFaultFault">
+				<soap:fault use="literal" name="BusinessFaultFault"
+					namespace="" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="CardCredit">
+			<soap:operation
+				soapAction="http://service.bloyal.com/3.5/PaymentEngine/CardCredit"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="SecurityFaultFault">
+				<soap:fault use="literal" name="SecurityFaultFault"
+					namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="RedirectFaultFault">
+				<soap:fault use="literal" name="RedirectFaultFault"
+					namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="SystemFaultFault">
+				<soap:fault use="literal" name="SystemFaultFault"
+					namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="BusinessFaultFault">
+				<soap:fault use="literal" name="BusinessFaultFault"
+					namespace="" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="CardRedeem">
+			<soap:operation
+				soapAction="http://service.bloyal.com/3.5/PaymentEngine/CardRedeem"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="SecurityFaultFault">
+				<soap:fault use="literal" name="SecurityFaultFault"
+					namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="RedirectFaultFault">
+				<soap:fault use="literal" name="RedirectFaultFault"
+					namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="SystemFaultFault">
+				<soap:fault use="literal" name="SystemFaultFault"
+					namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="BusinessFaultFault">
+				<soap:fault use="literal" name="BusinessFaultFault"
+					namespace="" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="CardDebit">
+			<soap:operation
+				soapAction="http://service.bloyal.com/3.5/PaymentEngine/CardDebit"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="SecurityFaultFault">
+				<soap:fault use="literal" name="SecurityFaultFault"
+					namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="RedirectFaultFault">
+				<soap:fault use="literal" name="RedirectFaultFault"
+					namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="SystemFaultFault">
+				<soap:fault use="literal" name="SystemFaultFault"
+					namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="BusinessFaultFault">
+				<soap:fault use="literal" name="BusinessFaultFault"
+					namespace="" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="CardRefund">
+			<soap:operation
+				soapAction="http://service.bloyal.com/3.5/PaymentEngine/CardRefund"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="SecurityFaultFault">
+				<soap:fault use="literal" name="SecurityFaultFault"
+					namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="RedirectFaultFault">
+				<soap:fault use="literal" name="RedirectFaultFault"
+					namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="SystemFaultFault">
+				<soap:fault use="literal" name="SystemFaultFault"
+					namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="BusinessFaultFault">
+				<soap:fault use="literal" name="BusinessFaultFault"
+					namespace="" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="CardAuthorize">
+			<soap:operation
+				soapAction="http://service.bloyal.com/3.5/PaymentEngine/CardAuthorize"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="SecurityFaultFault">
+				<soap:fault use="literal" name="SecurityFaultFault"
+					namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="RedirectFaultFault">
+				<soap:fault use="literal" name="RedirectFaultFault"
+					namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="SystemFaultFault">
+				<soap:fault use="literal" name="SystemFaultFault"
+					namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="BusinessFaultFault">
+				<soap:fault use="literal" name="BusinessFaultFault"
+					namespace="" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="CardRelease">
+			<soap:operation
+				soapAction="http://service.bloyal.com/3.5/PaymentEngine/CardRelease"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="SecurityFaultFault">
+				<soap:fault use="literal" name="SecurityFaultFault"
+					namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="RedirectFaultFault">
+				<soap:fault use="literal" name="RedirectFaultFault"
+					namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="SystemFaultFault">
+				<soap:fault use="literal" name="SystemFaultFault"
+					namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="BusinessFaultFault">
+				<soap:fault use="literal" name="BusinessFaultFault"
+					namespace="" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="CardCapture">
+			<soap:operation
+				soapAction="http://service.bloyal.com/3.5/PaymentEngine/CardCapture"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="SecurityFaultFault">
+				<soap:fault use="literal" name="SecurityFaultFault"
+					namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="RedirectFaultFault">
+				<soap:fault use="literal" name="RedirectFaultFault"
+					namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="SystemFaultFault">
+				<soap:fault use="literal" name="SystemFaultFault"
+					namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="BusinessFaultFault">
+				<soap:fault use="literal" name="BusinessFaultFault"
+					namespace="" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="PaymentEngineService">
+		<wsdl:port name="BasicHttpBinding_PaymentEngine" binding="tns:BasicHttpBinding_PaymentEngine">
+			<soap:address location="https://wsbeta.bloyal.com/WS35/PaymentEngine.svc" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
