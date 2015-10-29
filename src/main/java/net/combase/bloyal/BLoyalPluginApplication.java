@@ -4,6 +4,8 @@
 package net.combase.bloyal;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.jar.Manifest;
 
 import javax.swing.JFrame;
 
@@ -21,7 +23,21 @@ import org.eclipse.jetty.webapp.WebAppContext;
  */
 public class BLoyalPluginApplication
 {
+	private static String getVersion()
+	{
+		try
+		{
+			InputStream stream = BLoyalPluginApplication.class.getResourceAsStream("/META-INF/MANIFEST.MF");
+			Manifest m = new Manifest(stream);
+			return m.getMainAttributes().getValue("Project-Version");
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 
+		return "0";
+	}
 
 	public static void main(String[] args) throws Exception
 	{
@@ -65,12 +81,11 @@ public class BLoyalPluginApplication
 		};
 		configPanel.readSettings(settings);
 
-		JFrame f = new JFrame("KORONA BLoyal Plugin - ${project.version}");
+		JFrame f = new JFrame("KORONA BLoyal Plugin - " + getVersion());
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.getContentPane().add(configPanel);
 		f.setVisible(true);
 		f.setSize(650, 550);
-
 
 
 	}
