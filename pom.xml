@@ -1,9 +1,8 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.combase</groupId>
 	<artifactId>korona-bloyal-plugin</artifactId>
-	<version>1.1-SNAPSHOT</version>
+	<version>1.1</version>
 
 	<dependencies>
 		<dependency>
@@ -76,19 +75,16 @@
 						<configuration>
 							<detail>true</detail>
 							<transformers>
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 									<mainClass>net.combase.bloyal.BLoyalPluginApplication</mainClass>
 									<manifestEntries>
 										<Project-Version>${project.version}</Project-Version>
 									</manifestEntries>
 								</transformer>
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+								<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 									<resource>META-INF/spring.handlers</resource>
 								</transformer>
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+								<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 									<resource>META-INF/spring.schemas</resource>
 								</transformer>
 							</transformers>
@@ -154,6 +150,6 @@
 		<connection>scm:git:git@github.com:COMBASE/KORONA.pos-Client-bLoyal-plugin.git</connection>
 		<developerConnection>scm:git:git@github.com:COMBASE/KORONA.pos-Client-bLoyal-plugin.git</developerConnection>
 		<url>scm:git:git@github.com:COMBASE/KORONA.pos-Client-bLoyal-plugin.git</url>
-		<tag>HEAD</tag>
+		<tag>korona-bloyal-plugin-1.1</tag>
 	</scm>
 </project>
